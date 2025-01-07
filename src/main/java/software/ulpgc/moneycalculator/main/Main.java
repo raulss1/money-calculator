@@ -1,4 +1,4 @@
-package software.ulpgc.moneycalculator.Main;
+package software.ulpgc.moneycalculator.main;
 
 import software.ulpgc.moneycalculator.Command;
 import software.ulpgc.moneycalculator.Currency;
@@ -6,10 +6,11 @@ import software.ulpgc.moneycalculator.ExchangeMoneyCommand;
 import software.ulpgc.moneycalculator.fixerws.FixerCurrencyLoader;
 import software.ulpgc.moneycalculator.fixerws.FixerExchangeRateLoader;
 
+import java.io.IOException;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         MainFrame main = new MainFrame();
         List<Currency> currencies = new FixerCurrencyLoader().load();
         Command command = new ExchangeMoneyCommand(

@@ -1,4 +1,4 @@
-package software.ulpgc.moneycalculator.Main;
+package software.ulpgc.moneycalculator.main;
 
 import software.ulpgc.moneycalculator.Command;
 import software.ulpgc.moneycalculator.CurrencyDialog;
@@ -8,10 +8,13 @@ import software.ulpgc.moneycalculator.swing.SwingCurrencyDialog;
 import software.ulpgc.moneycalculator.swing.SwingMoneyDialog;
 import software.ulpgc.moneycalculator.swing.SwingMoneyDisplay;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class MainFrame extends JFrame {
     private final Map<String, Command> commands = new HashMap<>();
@@ -19,11 +22,12 @@ public class MainFrame extends JFrame {
     private MoneyDialog moneyDialog;
     private CurrencyDialog currencyDialog;
 
-    public MainFrame() throws HeadlessException {
+    public MainFrame() throws HeadlessException, IOException {
         this.setTitle("Money calculator");
         this.setSize(800,600);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setIconImage(ImageIO.read(Objects.requireNonNull(getClass().getResource("/calculadora.png"))));
         this.setLayout(new FlowLayout());
         this.add(createMoneyDialog());
         this.add(createCurrencyDialog());
