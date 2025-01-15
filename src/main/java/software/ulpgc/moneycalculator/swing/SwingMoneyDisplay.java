@@ -21,7 +21,6 @@ public class SwingMoneyDisplay extends JLabel implements MoneyDisplay {
         this.setText(money.toString());
         // Crea una ventana para mostrar el JLabel centrado
         JFrame frame = new JFrame("Money Display");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
         frame.add(this, BorderLayout.CENTER);
         frame.pack();

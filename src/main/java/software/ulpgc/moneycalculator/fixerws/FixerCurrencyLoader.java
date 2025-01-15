@@ -15,28 +15,47 @@ import java.util.Map;
 
 import static java.util.Collections.emptyList;
 
+import com.google.gson.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.*;
+
 public class FixerCurrencyLoader implements CurrencyLoader {
+
     @Override
     public List<Currency> load() {
         try {
-            return toList(loadJson());
+            String ratesJson = loadJson("https://api.exchangeratesapi.io/v1/latest?access_key=" + FixerAPI.key);
+            String symbolsJson = loadJson("https://api.exchangeratesapi.io/v1/symbols?access_key=" + FixerAPI.key);
+            return toList(ratesJson, symbolsJson);
         } catch (IOException e) {
-            return emptyList();
+            return Collections.emptyList();
         }
     }
 
-    private List<Currency> toList(String json) {
+    private List<Currency> toList(String ratesJson, String symbolsJson) {
         List<Currency> list = new ArrayList<>();
-        Map<String, JsonElement> symbols = new Gson().fromJson(json, JsonObject.class).get("rates").getAsJsonObject().asMap();
-        for (String symbol : symbols.keySet())
-            list.add(new Currency(symbol, Double.parseDouble(symbols.get(symbol).getAsString())));
+
+        // Parse rates and symbols
+        Map<String, JsonElement> rates = new Gson().fromJson(ratesJson, JsonObject.class).get("rates").getAsJsonObject().asMap();
+        Map<String, JsonElement> symbols = new Gson().fromJson(symbolsJson, JsonObject.class).get("symbols").getAsJsonObject().asMap();
+
+        // Combine data
+        for (String symbol : rates.keySet()) {
+            String name = symbols.containsKey(symbol) ? symbols.get(symbol).getAsString() : "Unknown Currency";
+            double rate = rates.get(symbol).getAsDouble();
+            list.add(new Currency(symbol, name, rate));
+        }
+
         return list;
     }
 
-    private String loadJson() throws IOException {
-        URL url = new URL("https://api.exchangeratesapi.io/v1/latest?access_key=" + FixerAPI.key);
+    private String loadJson(String urlString) throws IOException {
+        URL url = new URL(urlString);
         try (InputStream is = url.openStream()) {
             return new String(is.readAllBytes());
         }
     }
 }
+
