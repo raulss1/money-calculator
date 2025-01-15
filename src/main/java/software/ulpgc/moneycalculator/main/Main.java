@@ -1,8 +1,8 @@
 package software.ulpgc.moneycalculator.main;
 
-import software.ulpgc.moneycalculator.Command;
-import software.ulpgc.moneycalculator.Currency;
-import software.ulpgc.moneycalculator.ExchangeMoneyCommand;
+import software.ulpgc.moneycalculator.control.Command;
+import software.ulpgc.moneycalculator.model.Currency;
+import software.ulpgc.moneycalculator.control.ExchangeMoneyCommand;
 import software.ulpgc.moneycalculator.fixerws.FixerCurrencyLoader;
 import software.ulpgc.moneycalculator.fixerws.FixerExchangeRateLoader;
 

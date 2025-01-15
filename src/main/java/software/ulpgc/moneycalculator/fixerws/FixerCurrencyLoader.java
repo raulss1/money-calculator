@@ -3,8 +3,8 @@ package software.ulpgc.moneycalculator.fixerws;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import software.ulpgc.moneycalculator.Currency;
-import software.ulpgc.moneycalculator.CurrencyLoader;
+import software.ulpgc.moneycalculator.model.Currency;
+import software.ulpgc.moneycalculator.io.CurrencyLoader;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,12 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static java.util.Collections.emptyList;
-
-import com.google.gson.*;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.*;
 
 public class FixerCurrencyLoader implements CurrencyLoader {
