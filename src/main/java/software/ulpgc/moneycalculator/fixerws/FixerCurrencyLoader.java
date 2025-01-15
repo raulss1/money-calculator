@@ -31,11 +31,9 @@ public class FixerCurrencyLoader implements CurrencyLoader {
     private List<Currency> toList(String ratesJson, String symbolsJson) {
         List<Currency> list = new ArrayList<>();
 
-        // Parse rates and symbols
         Map<String, JsonElement> rates = new Gson().fromJson(ratesJson, JsonObject.class).get("rates").getAsJsonObject().asMap();
         Map<String, JsonElement> symbols = new Gson().fromJson(symbolsJson, JsonObject.class).get("symbols").getAsJsonObject().asMap();
 
-        // Combine data
         for (String symbol : rates.keySet()) {
             String name = symbols.containsKey(symbol) ? symbols.get(symbol).getAsString() : "Unknown Currency";
             double rate = rates.get(symbol).getAsDouble();

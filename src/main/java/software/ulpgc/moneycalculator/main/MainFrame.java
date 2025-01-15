@@ -4,9 +4,9 @@ import software.ulpgc.moneycalculator.control.Command;
 import software.ulpgc.moneycalculator.view.CurrencyDialog;
 import software.ulpgc.moneycalculator.view.MoneyDialog;
 import software.ulpgc.moneycalculator.view.MoneyDisplay;
-import software.ulpgc.moneycalculator.swing.SwingCurrencyDialog;
-import software.ulpgc.moneycalculator.swing.SwingMoneyDialog;
-import software.ulpgc.moneycalculator.swing.SwingMoneyDisplay;
+import software.ulpgc.moneycalculator.view.swing.SwingCurrencyDialog;
+import software.ulpgc.moneycalculator.view.swing.SwingMoneyDialog;
+import software.ulpgc.moneycalculator.view.swing.SwingMoneyDisplay;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
